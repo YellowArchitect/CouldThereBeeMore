@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed = 0.05f;
     public float turnSpeed = 3f;
+    public Color minigameColor;
 
     Rigidbody2D rigidbody2d;
     Collider2D collider2d;
 
     float horizontal;
     float vertical;
+    bool hasControl = true;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
         horizontal = turnSpeed * Input.GetAxis("Horizontal");
         vertical = moveSpeed * Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && hasControl)
         {
             RaycastHit2D[] results = new RaycastHit2D[1];
             if (collider2d.Raycast(transform.forward, results, 1, 1 << 9) > 0)
@@ -35,21 +37,34 @@ public class PlayerController : MonoBehaviour
                 FlowerBehaviour hit = results[0].transform.GetComponent<FlowerBehaviour>();
                 if (hit.is_collectable())
                 {
-                    hit.collect_pollen();
-                    print("Got flower!");
+                    pause();
+                    minigameColor = hit.collect_pollen();
                 }
             }
         }
     }
 
+    void pause()
+    {
+        hasControl = false;
+    }
+
+    void unpause()
+    {
+        hasControl = true;
+    }
+
     private void FixedUpdate()
     {
-        Vector2 position = rigidbody2d.position;
-        float rotation = rigidbody2d.rotation;
-        position.x -= vertical * Mathf.Sin((rotation/180)*Mathf.PI);
-        position.y += vertical * Mathf.Cos((rotation / 180) * Mathf.PI);
-        rotation -= horizontal;
-        rigidbody2d.MovePosition(position);
-        rigidbody2d.MoveRotation(rotation);
+        if (hasControl)
+        {
+            Vector2 position = rigidbody2d.position;
+            float rotation = rigidbody2d.rotation;
+            position.x -= vertical * Time.fixedDeltaTime * Mathf.Sin((rotation / 180) * Mathf.PI);
+            position.y += vertical * Time.fixedDeltaTime * Mathf.Cos((rotation / 180) * Mathf.PI);
+            rotation -= horizontal * Time.fixedDeltaTime;
+            rigidbody2d.MovePosition(position);
+            rigidbody2d.MoveRotation(rotation);
+        }
     }
 }
