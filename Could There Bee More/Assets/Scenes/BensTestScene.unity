@@ -202,75 +202,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &157477596
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 929138581090402202, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2847091838579811584, guid: 49d8a24bc200ab049b92307351721913,
-        type: 3}
-      propertyPath: m_Name
-      value: PollenMinigame
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 49d8a24bc200ab049b92307351721913, type: 3}
 --- !u!1 &581473524
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +742,75 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &1642692617
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4395408124180755667, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.2841578
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.9005723
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832030341799212615, guid: d391e044de1968e4686250d1d73d54e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d391e044de1968e4686250d1d73d54e4, type: 3}
 --- !u!4 &1700099438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1866218303032145478, guid: 2e3bf2ed8e27bd349b634e3a8e1fbfec,
@@ -1159,6 +1159,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 177719632, guid: d391e044de1968e4686250d1d73d54e4, type: 3}
+      propertyPath: flowerColor.b
+      value: 0.11654504
+      objectReference: {fileID: 0}
+    - target: {fileID: 177719632, guid: d391e044de1968e4686250d1d73d54e4, type: 3}
+      propertyPath: flowerColor.g
+      value: 0.11654504
+      objectReference: {fileID: 0}
+    - target: {fileID: 177719632, guid: d391e044de1968e4686250d1d73d54e4, type: 3}
+      propertyPath: flowerColor.r
+      value: 0.9150943
+      objectReference: {fileID: 0}
     - target: {fileID: 4395408124180755667, guid: d391e044de1968e4686250d1d73d54e4,
         type: 3}
       propertyPath: m_Name

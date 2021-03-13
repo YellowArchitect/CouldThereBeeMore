@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed = 0.05f;
     public float turnSpeed = 3f;
+    public GameObject pollenMinigame;
     public Color minigameColor;
 
     Rigidbody2D rigidbody2d;
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
                 {
                     pause();
                     minigameColor = hit.collect_pollen();
+                    Vector3 miniGamePos = new Vector3(transform.position.x, transform.position.y, 0);
+                    Instantiate(pollenMinigame, miniGamePos, Quaternion.identity);
                 }
             }
         }
@@ -52,6 +55,12 @@ public class PlayerController : MonoBehaviour
     void unpause()
     {
         hasControl = true;
+    }
+
+    public void receive_pollen(int polAmount)
+    {
+        print(polAmount);
+        unpause();
     }
 
     private void FixedUpdate()

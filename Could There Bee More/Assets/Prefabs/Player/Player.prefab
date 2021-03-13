@@ -145,4 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   turnSpeed: 150
+  pollenMinigame: {fileID: 2847091838579811584, guid: 49d8a24bc200ab049b92307351721913,
+    type: 3}
   minigameColor: {r: 0.38346466, g: 0.11035956, b: 0.754717, a: 1}

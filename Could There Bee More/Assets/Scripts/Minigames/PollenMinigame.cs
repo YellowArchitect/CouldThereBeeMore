@@ -24,7 +24,7 @@ public class PollenMinigame : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         pollenColor = player.minigameColor;
         basket = GetComponentInChildren<BasketController>();
-        timer = pollenSpawnFrequency;
+        timer = pollenSpawnFrequency/2;
         counter = pollenSpawnAmount;
         collider2d = GetComponent<Collider2D>();
     }
@@ -32,14 +32,15 @@ public class PollenMinigame : MonoBehaviour
     void spawn_pollen()
     {
         float randX = Random.Range(-pollenSpawnRange, pollenSpawnRange);
-        Vector3 newPos = new Vector3(transform.position.x + randX, transform.position.y + 6.5f, 0);
+        Vector3 newPos = new Vector3(transform.position.x + randX, transform.position.y + 6f, 0);
         
         Instantiate(pollen, newPos, Quaternion.identity).transform.parent = transform;
     }
 
     void end_minigame()
     {
-
+        player.receive_pollen(basket.get_caught());
+        Destroy(this.gameObject);
     }
 
     // Update is called once per frame
@@ -56,6 +57,15 @@ public class PollenMinigame : MonoBehaviour
         if (caught + basket.get_caught() == pollenSpawnAmount)
         {
             end_minigame();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<MinigamePollenBehaviour>() != null)
+        {
+            caught++;
+            Destroy(collision.gameObject);
         }
     }
 }

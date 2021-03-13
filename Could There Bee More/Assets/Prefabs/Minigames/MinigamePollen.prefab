@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6358864491727853382}
   - component: {fileID: 595675437883511755}
   - component: {fileID: 8302270697988600481}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MinigamePollen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

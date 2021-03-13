@@ -26,7 +26,6 @@ public class FlowerBehaviour : MonoBehaviour
 
     public Color collect_pollen()
     {
-        print("flower collected");
         collected = true;
         return flowerColor;
     }
