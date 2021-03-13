@@ -21,6 +21,4 @@ public class PollenCollector : MonoBehaviour
 
         return _collected;
     }
-
-
 }

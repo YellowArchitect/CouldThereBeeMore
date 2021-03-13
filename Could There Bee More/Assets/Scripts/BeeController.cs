@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BeeController : MonoBehaviour
 {
+    public string beeName;
     public HiveController hive;
 
     [SerializeField]
@@ -12,11 +13,13 @@ public class BeeController : MonoBehaviour
     [SerializeField]
     private float noise;
 
+    [SerializeField]
+    private int pollenCount;
+
     private Rigidbody2D rb;
     private Vector3 patchPosition;
     private Vector2 direction;
     private bool goToPatch;
-    private int pollenCount;
 
     private void Start()
     {
@@ -80,6 +83,10 @@ public class BeeController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Bee collected pollen!");
-        pollenCount += 3;
+
+        if (collision.CompareTag("Flower"))
+        {
+            pollenCount += 3;
+        }
     }
 }

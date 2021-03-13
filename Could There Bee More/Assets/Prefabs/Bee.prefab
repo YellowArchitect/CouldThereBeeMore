@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5044165060547487960}
   - component: {fileID: 6746204272747929337}
-  - component: {fileID: 5679678659426860236}
   - component: {fileID: 2490779193455394759}
   - component: {fileID: 1437823582282388736}
   - component: {fileID: 3861663369006996141}
@@ -47,23 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8481b1313d19aa42bf78a28f0fc8e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hive: {fileID: 0}
-  patch: {fileID: 0}
-  speed: 0.09
---- !u!114 &5679678659426860236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7341087638725305796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd24ace520867804d94596dc1b566f80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   beeName: Chad
-  pollenCount: 0
+  hive: {fileID: 0}
+  speed: 0.09
+  noise: 2
 --- !u!50 &2490779193455394759
 Rigidbody2D:
   serializedVersion: 4

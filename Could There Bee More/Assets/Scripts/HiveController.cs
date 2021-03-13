@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HiveController : MonoBehaviour
 {
     public Text score;
+    public Text speech;
     public int highScore;
 
     public BeeController[] registeredBees;
@@ -39,11 +40,17 @@ public class HiveController : MonoBehaviour
         {
             score.text = highScore.ToString();
         }
+
+        if (speech)
+        {
+            speech.text = $"Thank you {winnerBee} for collecting the high score of {highScore}!";
+        }
     }
 
     private void ClearHighScore()
     {
         highScore = 0;
+        winnerBee = "";
     }
 
     private Vector3 Patch()
@@ -84,13 +91,14 @@ public class HiveController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // TODO Get scores of bees
-        BeeController bee = collision.GetComponent<BeeController>();
-        if (bee)
+        BeeController _bee = collision.GetComponent<BeeController>();
+        if (_bee)
         {
-            int _score = bee.Collect();
+            int _score = _bee.Collect();
             if (_score > highScore)
             {
                 highScore = _score;
+                winnerBee = _bee.beeName;
             }
         }
     }
