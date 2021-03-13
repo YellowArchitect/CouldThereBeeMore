@@ -107,7 +107,7 @@ public class HiveController : MonoBehaviour
 
         // Wait for all the bees to come home before announcing the winner
         yield return new WaitForSeconds(waitForReturnDuration);
-        Message($"Today's Winner!\n{winnerBee}: {highScore}", 10);
+        Message($"Today's Winner!\n{winnerBee}: {highScore}", nightDuration);
 
         // "Sleep"
         yield return new WaitForSeconds(nightDuration);
