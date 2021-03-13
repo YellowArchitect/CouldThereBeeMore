@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
             print(pollenList.Count);
 
             // How to find the nearest flowers?
-            Vector2 castSize = new Vector2(2, 2);
+            Vector2 castSize = new Vector2(3, 3);
             RaycastHit2D[] results = Physics2D.BoxCastAll(transform.position, castSize, 0, transform.position, 0, 1<<9);
             for (int i = 0; i < results.Length; i++)
             {

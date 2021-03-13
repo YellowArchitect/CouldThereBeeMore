@@ -38,9 +38,10 @@ public class FlowerBehaviour : MonoBehaviour
 
     public void pollinate(Color color)
     {
-        flowerColor.r = (flowerColor.r + color.r) / 2;
-        flowerColor.g = (flowerColor.g + color.g) / 2;
-        flowerColor.b = (flowerColor.b + color.b) / 2;
+        flowerColor.r = ((flowerColor.r*2) + color.r) / 3;
+        flowerColor.g = ((flowerColor.g*2) + color.g) / 3;
+        flowerColor.b = ((flowerColor.b*2) + color.b) / 3;
+        collected = false;
         update_color();
     }
 }
