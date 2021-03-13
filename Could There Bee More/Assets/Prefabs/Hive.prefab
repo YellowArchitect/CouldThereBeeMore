@@ -273,14 +273,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677862347d2fed74c8c05287774799dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  speech: {fileID: 0}
+  messageText: {fileID: 3024760747428093986}
   highScore: 0
   registeredBees:
   - {fileID: 0}
-  patches: []
-  dayDuration: 0
-  nightDuration: 0
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  patches:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dayDuration: 20
+  nightDuration: 5
+  messageDuration: 2
+  waitForReturnDuration: 10
 --- !u!58 &1289544352192373105
 CircleCollider2D:
   m_ObjectHideFlags: 0
