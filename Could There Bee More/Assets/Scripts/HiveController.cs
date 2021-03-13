@@ -8,27 +8,21 @@ public class HiveController : MonoBehaviour
     public Text score;
     public int highScore;
 
-    public GameObject[] registeredBees;
+    public BeeController[] registeredBees;
+    public Transform[] patches;
 
     [SerializeField]
     private float dayDuration;
 
-    private Dictionary<string, int> beeScores = new Dictionary<string, int>();
+    [SerializeField]
+    private float nightDuration;
+
     private string winnerBee;
     private float nextNightTime;
 
     private void Awake()
     {
-        foreach (GameObject bee in registeredBees)
-        {
-            PollenCollector pc = bee.GetComponent<PollenCollector>();
-            if (pc)
-            {
-                beeScores.Add(pc.beeName, 0);
-            }
-        }
-
-        nextNightTime = 30f;
+        nextNightTime = 10f;
     }
 
     private void Update()
@@ -36,24 +30,70 @@ public class HiveController : MonoBehaviour
         if (nextNightTime < Time.time)
         {
             // Make it night time
-            // Bring bees home
-            foreach (GameObject bee in registeredBees)
-            {
-                // TODO bring bees home
-            }
+            StartCoroutine(NightTime());
+
             nextNightTime = Time.time + dayDuration;
         }
+
+        if (score)
+        {
+            score.text = highScore.ToString();
+        }
     }
+
+    private void ClearHighScore()
+    {
+        highScore = 0;
+    }
+
+    private Vector3 Patch()
+    {
+        if (patches.Length > 0)
+        {
+            int _patch = Random.Range(0, patches.Length);
+
+            return patches[_patch].position;
+        }
+
+        return transform.position;
+    }
+
+    private IEnumerator NightTime()
+    {
+        // Clear score (after we collect all the scores)
+        ClearHighScore();
+
+        // Bring bees home
+        foreach (BeeController _bee in registeredBees)
+        {
+            _bee.ComeHome();
+        }
+
+        // "Sleep"
+        yield return new WaitForSeconds(nightDuration);
+
+        // Send bees out
+        Vector3 _patch = Patch();
+        foreach (BeeController _bee in registeredBees)
+        {
+            _bee.GoOut(_patch);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PollenCollector pc = collision.GetComponent<PollenCollector>();
-        if (pc)
+        // TODO Get scores of bees
+        BeeController bee = collision.GetComponent<BeeController>();
+        if (bee)
         {
-            beeScores[pc.beeName] += pc.Collect();
-            Debug.Log($"Bee {pc.beeName} has collected {beeScores[pc.beeName]}");
+            int _score = bee.Collect();
+            if (_score > highScore)
+            {
+                highScore = _score;
+            }
         }
     }
 
-    
+
 }

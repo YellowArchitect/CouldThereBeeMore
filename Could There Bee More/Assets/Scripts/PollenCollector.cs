@@ -22,9 +22,5 @@ public class PollenCollector : MonoBehaviour
         return _collected;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Bee collected pollen!");
-        pollenCount += 3;
-    }
+
 }
