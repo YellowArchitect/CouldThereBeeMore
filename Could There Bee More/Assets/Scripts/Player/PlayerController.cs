@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 0.05f;
     public float turnSpeed = 3f;
     public GameObject pollenMinigame;
+    public GameObject pollenEffect;
     public Color minigameColor;
 
     Rigidbody2D rigidbody2d;
     Collider2D collider2d;
+    Queue<Color> pollenList;
 
     float horizontal;
     float vertical;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();
+        pollenList = new Queue<Color>();
     }
 
     // Update is called once per frame
@@ -30,37 +33,32 @@ public class PlayerController : MonoBehaviour
         horizontal = turnSpeed * Input.GetAxis("Horizontal");
         vertical = moveSpeed * Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift) && hasControl)
+        if (hasControl)
         {
-            RaycastHit2D[] results = new RaycastHit2D[1];
-            if (collider2d.Raycast(transform.forward, results, 1, 1 << 9) > 0)
+
+            // Check for flower interaction
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                FlowerBehaviour hit = results[0].transform.GetComponent<FlowerBehaviour>();
-                if (hit.is_collectable())
+                RaycastHit2D[] results = new RaycastHit2D[1];
+                if (collider2d.Raycast(transform.forward, results, 1, 1 << 9) > 0)
                 {
-                    pause();
-                    minigameColor = hit.collect_pollen();
-                    Vector3 miniGamePos = new Vector3(transform.position.x, transform.position.y, 0);
-                    Instantiate(pollenMinigame, miniGamePos, Quaternion.identity);
+                    FlowerBehaviour hit = results[0].transform.GetComponent<FlowerBehaviour>();
+                    if (hit.is_collectable())
+                    {
+                        pause();
+                        minigameColor = hit.collect_pollen();
+                        Vector3 miniGamePos = new Vector3(transform.position.x, transform.position.y, 0);
+                        Instantiate(pollenMinigame, miniGamePos, Quaternion.identity);
+                    }
                 }
             }
+
+            // Check for pollen dump
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                poof();
+            }
         }
-    }
-
-    void pause()
-    {
-        hasControl = false;
-    }
-
-    void unpause()
-    {
-        hasControl = true;
-    }
-
-    public void receive_pollen(int polAmount)
-    {
-        print(polAmount);
-        unpause();
     }
 
     private void FixedUpdate()
@@ -75,5 +73,37 @@ public class PlayerController : MonoBehaviour
             rigidbody2d.MovePosition(position);
             rigidbody2d.MoveRotation(rotation);
         }
+    }
+
+    // Receive pollen and store it in some data structure?
+    public void receive_pollen(int polAmount)
+    {
+        for (int i = 0; i < polAmount; i++)
+        {
+            pollenList.Enqueue(minigameColor);
+        }
+        unpause();
+    }
+
+    // Used to pollinate flowers
+    void poof()
+    {
+        if (pollenList.Count > 0)
+        {
+            minigameColor = pollenList.Dequeue();
+            Instantiate(pollenEffect, transform);
+            // How to find the nearest flowers?
+            print(pollenList.Count);
+        }
+    }
+
+    void pause()
+    {
+        hasControl = false;
+    }
+
+    void unpause()
+    {
+        hasControl = true;
     }
 }
