@@ -13,6 +13,7 @@ public class PollenCollectorUI : MonoBehaviour
     private void Awake()
     {
         pollenQueue = new Queue<GameObject>();
+        offset = 0f;
     }
 
     public void Add(Color c)
@@ -21,7 +22,7 @@ public class PollenCollectorUI : MonoBehaviour
         GameObject _newPollen = Instantiate(pollenPrefab, transform);
         _newPollen.GetComponent<Image>().color = c;
 
-
+        // Set the position of the flower
         RectTransform _rect = _newPollen.GetComponent<RectTransform>();
         if (_rect)
         {
