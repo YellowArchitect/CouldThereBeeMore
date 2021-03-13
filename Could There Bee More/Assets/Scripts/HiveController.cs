@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class HiveController : MonoBehaviour
 {
-    public Text score;
-    public Text speech;
+    public Text messageText;
     public int highScore;
 
     public BeeController[] registeredBees;
@@ -18,12 +17,22 @@ public class HiveController : MonoBehaviour
     [SerializeField]
     private float nightDuration;
 
+    [SerializeField]
+    private float messageDuration;
+
+    [SerializeField]
+    private float waitForReturnDuration;
+
     private string winnerBee;
     private float nextNightTime;
+
+    private Queue<string> messages = new Queue<string>();
+    private bool messageSystemOn;
 
     private void Awake()
     {
         nextNightTime = 0f;
+        messageSystemOn = false;
     }
 
     private void Update()
@@ -34,16 +43,6 @@ public class HiveController : MonoBehaviour
             StartCoroutine(NightTime());
 
             nextNightTime = Time.time + dayDuration;
-        }
-
-        if (score)
-        {
-            score.text = highScore.ToString();
-        }
-
-        if (speech)
-        {
-            speech.text = $"Thank you {winnerBee} for collecting the high score of {highScore}!";
         }
     }
 
@@ -65,19 +64,57 @@ public class HiveController : MonoBehaviour
         return transform.position;
     }
 
+    private void Message(string message, float duration)
+    {
+        if (messageText)
+        {
+            messages.Enqueue(message);
+
+            if (!messageSystemOn)
+            {
+                messageSystemOn = true;
+                StartCoroutine(MessageSystem(duration));
+            }
+        }
+    }
+
+    private IEnumerator MessageSystem(float duration)
+    {
+        if (messageText)
+        {
+            while (messages.Count > 0)
+            {
+                string _message = messages.Dequeue();
+                messageText.text = _message;
+
+                yield return new WaitForSeconds(duration);
+
+                messageText.text = "";
+            }
+        }
+
+        messageSystemOn = false;
+    }
+
     private IEnumerator NightTime()
     {
         // Bring bees home
+        Message("Come home bees!", messageDuration);
         foreach (BeeController _bee in registeredBees)
         {
             _bee.ComeHome();
         }
+
+        // Wait for all the bees to come home before announcing the winner
+        yield return new WaitForSeconds(waitForReturnDuration);
+        Message($"Today's Winner!\n{winnerBee}: {highScore}", 10);
 
         // "Sleep"
         yield return new WaitForSeconds(nightDuration);
 
         // Send bees out
         Vector3 _patch = Patch();
+        Message("Go collect pollen bees!", messageDuration);
         foreach (BeeController _bee in registeredBees)
         {
             _bee.GoOut(_patch);
