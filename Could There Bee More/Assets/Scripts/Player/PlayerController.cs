@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        collider2d = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -28,7 +29,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            print("pressed shift");
+            RaycastHit2D[] results = new RaycastHit2D[1];
+            if (collider2d.Raycast(transform.forward, results, 1, 1 << 9) > 0)
+            {
+                FlowerBehaviour hit = results[0].transform.GetComponent<FlowerBehaviour>();
+                if (hit.is_collectable())
+                {
+                    hit.collect_pollen();
+                    print("Got flower!");
+                }
+            }
         }
     }
 
