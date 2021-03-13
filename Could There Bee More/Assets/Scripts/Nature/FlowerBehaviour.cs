@@ -36,9 +36,11 @@ public class FlowerBehaviour : MonoBehaviour
         sr.color = flowerColor;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void pollinate(Color color)
     {
-        
+        flowerColor.r = (flowerColor.r + color.r) / 2;
+        flowerColor.g = (flowerColor.g + color.g) / 2;
+        flowerColor.b = (flowerColor.b + color.b) / 2;
+        update_color();
     }
 }

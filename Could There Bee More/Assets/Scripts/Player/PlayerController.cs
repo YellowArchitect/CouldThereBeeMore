@@ -92,8 +92,15 @@ public class PlayerController : MonoBehaviour
         {
             minigameColor = pollenList.Dequeue();
             Instantiate(pollenEffect, transform);
-            // How to find the nearest flowers?
             print(pollenList.Count);
+
+            // How to find the nearest flowers?
+            Vector2 castSize = new Vector2(2, 2);
+            RaycastHit2D[] results = Physics2D.BoxCastAll(transform.position, castSize, 0, transform.position, 0, 1<<9);
+            for (int i = 0; i < results.Length; i++)
+            {
+                results[i].transform.gameObject.GetComponent<FlowerBehaviour>().pollinate(minigameColor);
+            }
         }
     }
 
