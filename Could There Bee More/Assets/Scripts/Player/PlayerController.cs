@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public GameObject pollenEffect;
     public Color minigameColor;
 
+    public PollenCollectorUI pollenUI;
+
     Rigidbody2D rigidbody2d;
     Collider2D collider2d;
     Queue<Color> pollenList;
@@ -81,6 +83,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < polAmount; i++)
         {
             pollenList.Enqueue(minigameColor);
+            pollenUI.Add(minigameColor);
         }
         unpause();
     }
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
         if (pollenList.Count > 0)
         {
             minigameColor = pollenList.Dequeue();
+            pollenUI.Remove();
             Instantiate(pollenEffect, transform);
             print(pollenList.Count);
 
