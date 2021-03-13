@@ -67,9 +67,6 @@ public class HiveController : MonoBehaviour
 
     private IEnumerator NightTime()
     {
-        // Clear score (after we collect all the scores)
-        ClearHighScore();
-
         // Bring bees home
         foreach (BeeController _bee in registeredBees)
         {
@@ -85,12 +82,15 @@ public class HiveController : MonoBehaviour
         {
             _bee.GoOut(_patch);
         }
+
+        // Clear score (after we collect all the scores)
+        ClearHighScore();
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // TODO Get scores of bees
+        // Get scores of bees
         BeeController _bee = collision.GetComponent<BeeController>();
         if (_bee)
         {
