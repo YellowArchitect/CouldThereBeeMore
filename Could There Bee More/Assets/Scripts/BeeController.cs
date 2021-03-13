@@ -8,7 +8,10 @@ public class BeeController : MonoBehaviour
     public HiveController hive;
 
     [SerializeField]
-    private float speed;
+    private float moveSpeed;
+
+    [SerializeField]
+    private float turnSpeed;
 
     [SerializeField]
     private float noise;
@@ -24,7 +27,7 @@ public class BeeController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        goToPatch = true;
+        goToPatch = false;
         pollenCount = 0;
     }
 
@@ -73,11 +76,16 @@ public class BeeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 position = rb.position;
-        position.x += direction.x * speed;
-        position.y += direction.y * speed;
+        Vector2 _position = rb.position;
 
-        rb.MovePosition(position);
+        _position.x += direction.x * moveSpeed;
+        _position.y += direction.y * moveSpeed;
+
+        float _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion _rotation = Quaternion.Euler(new Vector3(0, 0, _angle - 90));
+
+        rb.MovePosition(_position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, _rotation, turnSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -88,5 +96,11 @@ public class BeeController : MonoBehaviour
         {
             pollenCount += 3;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)direction);
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward);
     }
 }

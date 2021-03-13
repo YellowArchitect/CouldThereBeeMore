@@ -23,7 +23,7 @@ public class HiveController : MonoBehaviour
 
     private void Awake()
     {
-        nextNightTime = 10f;
+        nextNightTime = 0f;
     }
 
     private void Update()
