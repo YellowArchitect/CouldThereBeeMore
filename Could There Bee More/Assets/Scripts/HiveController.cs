@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class HiveController : MonoBehaviour
 {
-    public Text messageText;
-    public int highScore;
+    public UnityAction<string, float> OnMessage;
 
     public BeeController[] registeredBees;
     public Transform[] patches;
@@ -23,6 +22,7 @@ public class HiveController : MonoBehaviour
     [SerializeField]
     private float waitForReturnDuration;
 
+    private int highScore;
     private string winnerBee;
     private float nextNightTime;
 
@@ -66,34 +66,8 @@ public class HiveController : MonoBehaviour
 
     private void Message(string message, float duration)
     {
-        if (messageText)
-        {
-            messages.Enqueue(message);
-
-            if (!messageSystemOn)
-            {
-                messageSystemOn = true;
-                StartCoroutine(MessageSystem(duration));
-            }
-        }
-    }
-
-    private IEnumerator MessageSystem(float duration)
-    {
-        if (messageText)
-        {
-            while (messages.Count > 0)
-            {
-                string _message = messages.Dequeue();
-                messageText.text = _message;
-
-                yield return new WaitForSeconds(duration);
-
-                messageText.text = "";
-            }
-        }
-
-        messageSystemOn = false;
+        // TODO invoke an event
+        //OnMessage.Invoke(message, duration);   
     }
 
     private IEnumerator NightTime()
@@ -107,7 +81,7 @@ public class HiveController : MonoBehaviour
 
         // Wait for all the bees to come home before announcing the winner
         yield return new WaitForSeconds(waitForReturnDuration);
-        Message($"Today's Winner!\n{winnerBee}: {highScore}", nightDuration);
+        Message($"Today's Highscore! {winnerBee}: {highScore}", nightDuration);
 
         // "Sleep"
         yield return new WaitForSeconds(nightDuration);
