@@ -398,7 +398,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ben Schmidt - Art and Spaghetti Code\nMaria Jernigan - \nZach Long - "
+  m_Text: "Zach Long - \nBen Schmidt - Art and Spaghetti Code\nMaria Jernigan - Music
+    Composition, SFX Curation\n"
 --- !u!222 &240334568
 CanvasRenderer:
   m_ObjectHideFlags: 0
