@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ab5d750e697002c41aa5e8a830458f3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df240facd1227c408e5e934ad1c0fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaInSeconds: 30
   moveSpeed: 5
   turnSpeed: 150
   pollenMinigame: {fileID: 2847091838579811584, guid: 49d8a24bc200ab049b92307351721913,
@@ -150,3 +151,5 @@ MonoBehaviour:
   pollenEffect: {fileID: 1506920198801737984, guid: ca8af5a7e3f6dd845aaeb8859273d350,
     type: 3}
   minigameColor: {r: 0.38346466, g: 0.11035956, b: 0.754717, a: 1}
+  pollenUI: {fileID: 0}
+  hive: {fileID: 0}
