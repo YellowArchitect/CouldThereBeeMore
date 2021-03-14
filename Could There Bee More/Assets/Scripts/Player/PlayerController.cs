@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public GameObject pollenEffect;
     public Color minigameColor;
 
+    static int pollenCollected;
+    static int flowersPollinated;
+    static int minigamesPlayed;
+
     public PollenCollectorUI pollenUI;
     public Slider staminaSlider;
 
@@ -33,6 +37,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pollenCollected = 0;
+        flowersPollinated = 0;
+        minigamesPlayed = 0;
         rigidbody2d = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();
         pollenList = new Queue<Color>();
@@ -82,6 +89,7 @@ public class PlayerController : MonoBehaviour
                         minigameColor = flowerHit.collect_pollen();
                         Vector3 miniGamePos = new Vector3(transform.position.x, transform.position.y, 0);
                         Instantiate(pollenMinigame, miniGamePos, Quaternion.identity);
+                        minigamesPlayed++;
                     }
                     else if (stamina < (staminaInSeconds - 10f))
                     {
@@ -128,6 +136,7 @@ public class PlayerController : MonoBehaviour
     // Receive pollen and store it in some data structure?
     public void receive_pollen(int polAmount)
     {
+        pollenCollected += polAmount;
         for (int i = 0; i < polAmount; i++)
         {
             pollenList.Enqueue(minigameColor);
@@ -158,6 +167,7 @@ public class PlayerController : MonoBehaviour
             // How to find the nearest flowers?
             Vector2 castSize = new Vector2(3, 3);
             RaycastHit2D[] results = Physics2D.BoxCastAll(transform.position, castSize, 0, transform.position, 0, 1<<9);
+            flowersPollinated += results.Length;
             for (int i = 0; i < results.Length; i++)
             {
                 results[i].transform.gameObject.GetComponent<FlowerBehaviour>().pollinate(minigameColor);
