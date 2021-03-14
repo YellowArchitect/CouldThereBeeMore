@@ -67,6 +67,11 @@ public class BeeController : MonoBehaviour
         if (goToPatch)
         {
             direction = (patchPosition - transform.position).normalized;
+
+            if (Vector3.Distance(patchPosition, transform.position) < 0.5f)
+            {
+                // Do nothing, smh
+            }
         }
         else
         {
