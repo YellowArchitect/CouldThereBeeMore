@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         horizontal = turnSpeed * Input.GetAxis("Horizontal");
         vertical = moveSpeed * Input.GetAxis("Vertical");
 
+        // Please ignore this if statement in general ok?, thanks <3
         if (Mathf.Abs(horizontal) > 0 || Mathf.Abs(vertical) > 0)
         {
             if (!audioSrc.isPlaying)
@@ -198,6 +199,8 @@ public class PlayerController : MonoBehaviour
             {
                 results[i].transform.gameObject.GetComponent<FlowerBehaviour>().pollinate(minigameColor);
             }
+
+            audioSrc.PlayOneShot(playerBeePoofClip);
         }
     }
 
