@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public float staminaInSeconds = 30f;
     public float moveSpeed = 0.05f;
     public float turnSpeed = 3f;
     public GameObject pollenMinigame;
@@ -13,13 +14,17 @@ public class PlayerController : MonoBehaviour
 
     public PollenCollectorUI pollenUI;
 
+    public GameObject hive;
+
     Rigidbody2D rigidbody2d;
     Collider2D collider2d;
     Queue<Color> pollenList;
 
+    float stamina;
     float horizontal;
     float vertical;
     bool hasControl = true;
+    readonly int flowerHiveMask = (1 << 9) | (1 << 13);
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +32,7 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();
         pollenList = new Queue<Color>();
+        stamina = staminaInSeconds;
     }
 
     // Update is called once per frame
@@ -38,19 +44,37 @@ public class PlayerController : MonoBehaviour
         if (hasControl)
         {
 
+            if (stamina <= 0)
+            {
+                //pause();
+                //transition
+                transform.position = hive.transform.position;
+                pollenList.Clear();
+                stamina = staminaInSeconds;
+            }
+
+            stamina -= Time.deltaTime;
+            print(stamina);
+
             // Check for flower interaction
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 RaycastHit2D[] results = new RaycastHit2D[1];
-                if (collider2d.Raycast(transform.forward, results, 1, 1 << 9) > 0)
+                if (collider2d.Raycast(transform.forward, results, 1, flowerHiveMask) > 0)
                 {
-                    FlowerBehaviour hit = results[0].transform.GetComponent<FlowerBehaviour>();
-                    if (hit.is_collectable())
+                    FlowerBehaviour flowerHit = results[0].transform.GetComponent<FlowerBehaviour>();
+                    if (flowerHit != null && flowerHit.is_collectable())
                     {
                         pause();
-                        minigameColor = hit.collect_pollen();
+                        minigameColor = flowerHit.collect_pollen();
                         Vector3 miniGamePos = new Vector3(transform.position.x, transform.position.y, 0);
                         Instantiate(pollenMinigame, miniGamePos, Quaternion.identity);
+                    }
+                    else if (stamina < (staminaInSeconds - 10f))
+                    {
+                        //pause();
+                        //transition
+                        stamina = staminaInSeconds;
                     }
                 }
             }
@@ -86,6 +110,11 @@ public class PlayerController : MonoBehaviour
             pollenUI.Add(minigameColor);
         }
         unpause();
+    }
+
+    public float get_stamina()
+    {
+        return stamina;
     }
 
     // Used to pollinate flowers
