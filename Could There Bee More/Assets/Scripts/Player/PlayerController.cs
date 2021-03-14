@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public Color minigameColor;
 
     public PollenCollectorUI pollenUI;
+    public Slider staminaSlider;
 
     public GameObject hive;
 
@@ -33,6 +35,12 @@ public class PlayerController : MonoBehaviour
         collider2d = GetComponent<Collider2D>();
         pollenList = new Queue<Color>();
         stamina = staminaInSeconds;
+
+        if (staminaSlider)
+        {
+            staminaSlider.maxValue = stamina;
+            staminaSlider.value = stamina;
+        }
     }
 
     // Update is called once per frame
@@ -83,6 +91,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 poof();
+            }
+
+            if (staminaSlider)
+            {
+                staminaSlider.value = stamina;
             }
         }
     }
