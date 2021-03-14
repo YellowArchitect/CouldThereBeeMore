@@ -182,6 +182,17 @@ public class PlayerController : MonoBehaviour
         return stamina;
     }
 
+    // Used by the hive to collect the player's pollen
+    public int Collect()
+    {
+        int _count = pollenList.Count;
+
+        pollenList.Clear();
+        pollenUI.Clear();
+        
+        return _count;
+    }
+
     // Used to pollinate flowers
     void poof()
     {

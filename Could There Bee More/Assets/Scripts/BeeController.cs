@@ -94,7 +94,7 @@ public class BeeController : MonoBehaviour
 
         if (collision.CompareTag("Flower"))
         {
-            pollenCount += 3;
+            pollenCount++;
         }
     }
 
