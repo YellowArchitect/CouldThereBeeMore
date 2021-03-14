@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour
             }
 
             stamina -= Time.deltaTime;
-            print(stamina);
 
             // Check for flower interaction
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -189,7 +188,11 @@ public class PlayerController : MonoBehaviour
     {
         int _count = pollenList.Count;
 
-        pollenList.Clear();
+        while(pollenList.Count > 0)
+        {
+            poof();
+        }
+
         pollenUI.Clear();
         
         return _count;
