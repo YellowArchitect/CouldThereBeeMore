@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pollen: {fileID: 236027351855430746, guid: e5e900f6ffb0a024ca06f4bb854172d8, type: 3}
-  pollenSpawnAmount: 5
-  pollenSpawnFrequency: 2
+  pollenSpawnAmount: 10
+  pollenSpawnFrequency: 0.5
   pollenSpawnRange: 5.5
   pollenColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &7165592948818901422
