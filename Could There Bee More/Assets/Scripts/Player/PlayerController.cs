@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
+    public int lifetime = 20;
     public float staminaInSeconds = 30f;
     public float moveSpeed = 0.05f;
     public float turnSpeed = 3f;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     Collider2D collider2d;
     Queue<Color> pollenList;
 
+    int daysLeft;
     float stamina;
     float horizontal;
     float vertical;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         collider2d = GetComponent<Collider2D>();
         pollenList = new Queue<Color>();
         stamina = staminaInSeconds;
+        daysLeft = lifetime;
 
         if (staminaSlider)
         {
@@ -59,6 +62,7 @@ public class PlayerController : MonoBehaviour
                 transform.position = hive.transform.position;
                 pollenList.Clear();
                 pollenUI.Clear();
+                daysLeft--;
                 stamina = staminaInSeconds;
             }
 
@@ -83,9 +87,15 @@ public class PlayerController : MonoBehaviour
                     {
                         //pause();
                         //transition
+                        daysLeft--;
                         stamina = staminaInSeconds;
                     }
                 }
+            }
+
+            if(daysLeft <= 0)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("EndScene");
             }
 
             // Check for pollen dump
@@ -124,6 +134,11 @@ public class PlayerController : MonoBehaviour
             pollenUI.Add(minigameColor);
         }
         unpause();
+    }
+
+    public int get_days_left()
+    {
+        return daysLeft;
     }
 
     public float get_stamina()
