@@ -46,6 +46,11 @@ public class PollenMinigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            end_minigame();
+        }
+
         timer -= Time.deltaTime;
         if(timer <= 0 && counter > 0)
         {
