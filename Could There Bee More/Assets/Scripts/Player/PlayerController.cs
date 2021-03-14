@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
             minigameColor = pollenList.Dequeue();
             pollenUI.Remove();
             Instantiate(pollenEffect, transform);
-            print(pollenList.Count);
 
             // How to find the nearest flowers?
             Vector2 castSize = new Vector2(3, 3);
