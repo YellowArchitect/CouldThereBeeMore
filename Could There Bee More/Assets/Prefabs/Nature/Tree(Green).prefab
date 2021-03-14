@@ -194,10 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a2ea8d3e3b0d244a3b4c0f7980b4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeThroughRate: 1
-  minTreetop: 100
-  maxShadow: 160
-  shadow: {fileID: 2568262030087035472}
+  seeThroughRate: 2
+  minTreetop: 50
 --- !u!1 &7389539540062638676
 GameObject:
   m_ObjectHideFlags: 0
