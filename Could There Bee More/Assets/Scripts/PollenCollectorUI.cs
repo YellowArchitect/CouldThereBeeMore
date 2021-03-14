@@ -51,4 +51,12 @@ public class PollenCollectorUI : MonoBehaviour
             offset += 15f;
         }
     }
+
+    public void Clear()
+    {
+        while (pollenQueue.Count > 0)
+        {
+            Destroy(pollenQueue.Dequeue());
+        }
+    }
 }

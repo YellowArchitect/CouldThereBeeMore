@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
                 //transition
                 transform.position = hive.transform.position;
                 pollenList.Clear();
+                pollenUI.Clear();
                 stamina = staminaInSeconds;
             }
 
