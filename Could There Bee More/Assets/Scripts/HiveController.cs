@@ -144,6 +144,18 @@ public class HiveController : MonoBehaviour
                 winnerBee = _bee.beeName;
             }
         }
+
+        // Get Player score
+        PlayerController _player = collision.GetComponent<PlayerController>();
+        if (_player)
+        {
+            int _score = _player.Collect();
+            if (_score > highScore)
+            {
+                highScore = _score;
+                winnerBee = "Player";
+            }
+        }
     }
 
 

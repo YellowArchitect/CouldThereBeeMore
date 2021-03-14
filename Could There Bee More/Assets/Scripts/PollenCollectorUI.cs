@@ -54,6 +54,7 @@ public class PollenCollectorUI : MonoBehaviour
 
     public void Clear()
     {
+        offset = 0f;
         while (pollenQueue.Count > 0)
         {
             Destroy(pollenQueue.Dequeue());
