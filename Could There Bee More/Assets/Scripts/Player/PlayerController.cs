@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
             if(daysLeft <= 0)
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("EndScene");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("EndMenu");
             }
 
             // Check for pollen dump
