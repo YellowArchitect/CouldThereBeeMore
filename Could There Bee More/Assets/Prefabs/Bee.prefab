@@ -48,8 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beeName: Chad
   hive: {fileID: 0}
-  speed: 0.09
+  collectCooldown: 1
+  moveSpeed: 0.09
+  turnSpeed: 3
   noise: 2
+  pollenCount: 0
 --- !u!50 &2490779193455394759
 Rigidbody2D:
   serializedVersion: 4

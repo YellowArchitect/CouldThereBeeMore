@@ -6,6 +6,7 @@ public class BeeController : MonoBehaviour
 {
     public string beeName;
     public HiveController hive;
+    public float collectCooldown;
 
     [SerializeField]
     private float moveSpeed;
@@ -19,10 +20,13 @@ public class BeeController : MonoBehaviour
     [SerializeField]
     private int pollenCount;
 
+    private Vector2 originalPatch;
+
     private Rigidbody2D rb;
     private Vector3 patchPosition;
     private Vector2 direction;
     private bool goToPatch;
+    private float nextCollectTime;
 
     private void Start()
     {
@@ -38,6 +42,7 @@ public class BeeController : MonoBehaviour
 
     public void GoOut(Vector3 targetPatch)
     {
+        originalPatch = targetPatch;
         patchPosition = PatchPosition(targetPatch);
         goToPatch = true;
     }
@@ -68,9 +73,9 @@ public class BeeController : MonoBehaviour
         {
             direction = (patchPosition - transform.position).normalized;
 
-            if (Vector3.Distance(patchPosition, transform.position) < 0.5f)
+            if (Vector2.Distance(patchPosition, transform.position) < 0.2f)
             {
-                // Do nothing, smh
+                patchPosition = PatchPosition(originalPatch);
             }
         }
         else
@@ -97,9 +102,11 @@ public class BeeController : MonoBehaviour
     {
         Debug.Log("Bee collected pollen!");
 
-        if (collision.CompareTag("Flower"))
+        if (collision.CompareTag("Flower") && nextCollectTime < Time.time)
         {
             pollenCount++;
+
+            nextCollectTime = Time.time + collectCooldown;
         }
     }
 

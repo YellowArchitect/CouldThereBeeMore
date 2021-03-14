@@ -35,8 +35,15 @@ public class HiveController : MonoBehaviour
     {
         audioSrc = GetComponent<AudioSource>();
 
-        nextNightTime = 0f;
+        nextNightTime = dayDuration;
         messageSystemOn = false;
+
+        Vector3 _patch = Patch();
+        Message("Go collect pollen bees!", messageDuration);
+        foreach (BeeController _bee in registeredBees)
+        {
+            _bee.GoOut(_patch);
+        }
     }
 
     private void Update()
