@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
                         Instantiate(pollenMinigame, miniGamePos, Quaternion.identity);
                         minigamesPlayed++;
                     }
-                    else if (stamina < (staminaInSeconds - 10f))
+                    else if (stamina < (staminaInSeconds - 3f))
                     {
                         //pause();
                         //transition
