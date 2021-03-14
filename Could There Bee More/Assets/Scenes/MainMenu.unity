@@ -398,11 +398,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Ben -
+  m_Text: 'Zach Long - Programming, Level Design, Art, UI
 
-    Maria -
+    Ben Schmidt -
 
-    Zach - Programming, Level Design, Art, UI'
+    Maria
+    Jernigan - Music Composition, Audio Design'
 --- !u!222 &240334568
 CanvasRenderer:
   m_ObjectHideFlags: 0
