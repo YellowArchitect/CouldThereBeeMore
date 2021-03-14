@@ -23,6 +23,8 @@ public class HiveController : MonoBehaviour
     [SerializeField]
     private float waitForReturnDuration;
 
+    private AudioSource audioSrc;
+
     private string winnerBee;
     private float nextNightTime;
 
@@ -31,6 +33,8 @@ public class HiveController : MonoBehaviour
 
     private void Awake()
     {
+        audioSrc = GetComponent<AudioSource>();
+
         nextNightTime = 0f;
         messageSystemOn = false;
     }
@@ -107,12 +111,14 @@ public class HiveController : MonoBehaviour
 
         // Wait for all the bees to come home before announcing the winner
         yield return new WaitForSeconds(waitForReturnDuration);
+        audioSrc.Stop();
         Message($"Today's Winner!\n{winnerBee}: {highScore}", nightDuration);
 
         // "Sleep"
         yield return new WaitForSeconds(nightDuration);
 
         // Send bees out
+        audioSrc.Play();
         Vector3 _patch = Patch();
         Message("Go collect pollen bees!", messageDuration);
         foreach (BeeController _bee in registeredBees)

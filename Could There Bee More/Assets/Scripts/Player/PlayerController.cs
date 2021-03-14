@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip playerBeeFlyingClip;
+    public AudioClip playerBeeSlurpingClip;
+    public AudioClip playerBeePoofClip;
 
     public int lifetime = 20;
     public float staminaInSeconds = 30f;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     Collider2D collider2d;
     Queue<Color> pollenList;
+    AudioSource audioSrc;
 
     int daysLeft;
     float stamina;
@@ -43,6 +47,7 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();
         pollenList = new Queue<Color>();
+        audioSrc = GetComponent<AudioSource>();
         stamina = staminaInSeconds;
         daysLeft = lifetime;
 
@@ -58,6 +63,18 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = turnSpeed * Input.GetAxis("Horizontal");
         vertical = moveSpeed * Input.GetAxis("Vertical");
+
+        if (Mathf.Abs(horizontal) > 0 || Mathf.Abs(vertical) > 0)
+        {
+            if (!audioSrc.isPlaying)
+            {
+                audioSrc.PlayOneShot(playerBeeFlyingClip);
+            }
+        }
+        else if (audioSrc.isPlaying)
+        {
+            audioSrc.Stop();
+        }
 
         if (hasControl)
         {
