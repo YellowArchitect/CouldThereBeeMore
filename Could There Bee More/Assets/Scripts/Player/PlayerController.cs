@@ -115,6 +115,8 @@ public class PlayerController : MonoBehaviour
                         //transition
                         daysLeft--;
                         stamina = staminaInSeconds;
+
+                        audioSrc.PlayOneShot(playerBeeSlurpingClip);
                     }
                 }
             }
