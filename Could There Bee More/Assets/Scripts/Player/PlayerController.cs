@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     public GameObject pollenEffect;
     public Color minigameColor;
 
-    static int pollenCollected;
-    static int flowersPollinated;
-    static int minigamesPlayed;
+    static int pollenCollected = 0;
+    static int flowersPollinated = 0;
+    static int minigamesPlayed = 0;
 
     public PollenCollectorUI pollenUI;
     public Slider staminaSlider;
@@ -143,6 +143,15 @@ public class PlayerController : MonoBehaviour
             pollenUI.Add(minigameColor);
         }
         unpause();
+    }
+
+    public static int[] get_stats()
+    {
+        int[] ret = new int[3];
+        ret[0] = minigamesPlayed;
+        ret[1] = pollenCollected;
+        ret[2] = flowersPollinated;
+        return ret;
     }
 
     public int get_days_left()
