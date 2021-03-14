@@ -12,8 +12,8 @@ public class EndMenuBehaviour : MonoBehaviour
     void Start()
     {
         int[] results = PlayerController.get_stats();
-        string stats = string.Format("Flowers Visited: {0}\nPollen Collected: {1}\nFlowers Pollinated: {2}",
-            results[0], results[1], results[2]);
+        string stats = string.Format("Flowers Visited: {0}\nPollen Collected: {1}\nFlowers Pollinated: {2}\n Pollen Delivered: {3}",
+            results[0], results[1], results[2], HiveController.get_delivered_pollen());
         text.GetComponent<Text>().text = stats;
     }
 

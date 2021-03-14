@@ -3203,13 +3203,18 @@ PrefabInstance:
     - target: {fileID: 1866218303032145483, guid: 2e3bf2ed8e27bd349b634e3a8e1fbfec,
         type: 3}
       propertyPath: lifetime
-      value: 2147483647
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1866218303032145483, guid: 2e3bf2ed8e27bd349b634e3a8e1fbfec,
         type: 3}
       propertyPath: pollenUI
       value: 
       objectReference: {fileID: 1049675729}
+    - target: {fileID: 1866218303032145483, guid: 2e3bf2ed8e27bd349b634e3a8e1fbfec,
+        type: 3}
+      propertyPath: staminaInSeconds
+      value: 1e+15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e3bf2ed8e27bd349b634e3a8e1fbfec, type: 3}
 --- !u!1001 &4123664236423891523

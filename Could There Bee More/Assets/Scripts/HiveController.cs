@@ -31,12 +31,15 @@ public class HiveController : MonoBehaviour
     private Queue<string> messages = new Queue<string>();
     private bool messageSystemOn;
 
+    static int deliveredPollen = 0;
+
     private void Awake()
     {
         audioSrc = GetComponent<AudioSource>();
 
         nextNightTime = dayDuration;
         messageSystemOn = false;
+        deliveredPollen = 0;
 
         Vector3 _patch = Patch();
         Message("Go collect pollen bees!", messageDuration);
@@ -157,12 +160,18 @@ public class HiveController : MonoBehaviour
         if (_player)
         {
             int _score = _player.Collect();
+            deliveredPollen += _score;
             if (_score > highScore)
             {
                 highScore = _score;
                 winnerBee = "Player";
             }
         }
+    }
+
+    public static int get_delivered_pollen()
+    {
+        return deliveredPollen;
     }
 
 
