@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1854834166663342992}
   - component: {fileID: 1854834166663342993}
   - component: {fileID: 1854834166663342994}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Honeycomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
