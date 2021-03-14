@@ -398,12 +398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-    m_Text: 'Ben - Art and Spaghetti Code
-
-    Ben Schmidt -
-
-    Maria
-    Jernigan - Music Composition, Audio Design'
+  m_Text: "Ben Schmidt - Art and Spaghetti Code\nMaria Jernigan - \nZach Long - "
 --- !u!222 &240334568
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -427,7 +422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &319688568
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1580,7 +1575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1363265397
 RectTransform:
   m_ObjectHideFlags: 0
